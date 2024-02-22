@@ -1,0 +1,30 @@
+.dropdown_genres {
+  opacity: 0.9;
+  text-align: center;
+  background: $primary-text-color;
+  cursor: pointer;
+}
+.genres_list {
+  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 10px;
+  display: grid;
+  border-bottom: 3px solid $accent-color;
+  @media screen and (min-width: 768px) {
+    grid-gap: 15px;
+  }
+}
+.genres_link {
+  display: block;
+  padding: 10px 0;
+  background: #8c8c8c;
+  border-radius: 5px;
+  color: $primary-text-color;
+  &:hover {
+    background: $white-text-color;
+  }
+}
+.genres_link.active {
+  background: $accent-color;
+  color: $white-text-color;
+}
