@@ -50,7 +50,7 @@ function renderGallery(data) {
       <p class="gallery__genre">${genreStr} | ${release_date.substr(
         0,
         4,
-      )}<span class="gallery__raiting">${vote_average}</span>
+      )}<span class="gallery__raiting">${Number(vote_average.toFixed(1))}</span>
       </p>
     </div>
   </a>

@@ -26,7 +26,7 @@ function renderFilmModal(data) {
                 <td class="modal__param-titel">Vote / Votes</td>
                 <td class="modal__param-value">
                   <div class="modal__film-votes">
-                    <span class="param__value-vote">${vote_average}</span> /
+                    <span class="param__value-vote">${Number(vote_average.toFixed(1))}</span> /
                     <span class="param__value-votes">${vote_count}</span>
                   </div>
                 </td>
