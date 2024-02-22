@@ -3,7 +3,7 @@ const homeMarkupWithGenres = `<form class="header-form js-header-form">
 <button class="header-form__btn" aria-label="Search Button"></button>
 </form>
 <div class="btn-genre" >
-    <button class="btn-genre__choose" name="chooseGenre">CHOOSE BY GENRE <span class="btn-genre__arrow"></span></button>
+    <button class="btn-genre__choose" name="chooseGenre">Categories <span class="btn-genre__arrow"></span></button>
 </div>`;
 
 const homeMarkup = `<form class="header-form js-header-form">
