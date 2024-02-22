@@ -1,8 +1,8 @@
 import { refs } from '../references/refs';
 import { PAGE_TYPE, readState } from '../base/state';
-import images from '../../images/plug/noresult.png';
+import images from '../../images/plug/notfound.jpg';
 import { isInteger } from 'lodash';
-import poster from '../../images/plug/noposter.jpg';
+import poster from '../../images/plug/notfound.jpg';
 
 function renderGallery(data) {
   if (data === null || data.length === 0) {

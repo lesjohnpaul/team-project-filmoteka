@@ -4,7 +4,7 @@ import { readState } from '../base/state';
 import { onModalBtnWatchedClick, onModalBtnQueueClick } from '../base/handlers';
 import { switchToNextFilmInGallery, switchToPrevFilmInGallery } from '../utils/modalFilmSwitcher';
 import { setModalSwitchBtnAvailability } from '../utils/modalFilmSwitcher';
-import poster from '../../images/plug/noposter.jpg';
+import poster from '../../images/plug/notfound.jpg';
 
 function renderFilmModal(data) {
   const { original_title, genres, poster_path, overview, popularity, vote_average, vote_count } =
