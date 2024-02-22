@@ -35,6 +35,18 @@ async function getFilmByGenreId(id, page) {
   );
   return response;
 }
+
+async function onfetchTrailers(id) {
+  try {
+    const url = `${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+}
+
 export {
   getBySearchQuery,
   getPopularFilms,
@@ -42,4 +54,5 @@ export {
   getGenres,
   getFilmsByIdArray,
   getFilmByGenreId,
+  onfetchTrailers,
 };

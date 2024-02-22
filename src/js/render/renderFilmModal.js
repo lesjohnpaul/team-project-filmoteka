@@ -17,7 +17,10 @@ function renderFilmModal(data) {
         <div class="modal__wrapper">
        
           <div class="modal__image-wrapper">
-              <img class="modal__image" src="${posterPath}" alt="${original_title}" height="531" />     
+              <img class="modal__image" src="${posterPath}" alt="${original_title}" height="531" />
+              <button type="button" class="button open-trailer">
+                <span class="open-trailer__icon"> </span>
+              </button>     
           </div>
           <div class="modal__info-wrapper">
             <h2 class="modal__film-titel">${original_title}</h2>
