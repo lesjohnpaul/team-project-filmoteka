@@ -39,29 +39,19 @@
 
 .genres_link {
   display: flex;
-  background: #8c8c8c;
+  background: $accent-color;
   border-radius: 5px;
-  color: $primary-text-color;
+  color: $white-text-color;
   padding: 10px 10px;
   align-items: center;
   justify-content: center;
   width: 100%;
 
   &:hover {
-    background: $white-text-color;
+    background: #8c8c8c;
   }
 }
 
-// .genres_link {
-//   display: block;
-//   padding: 10px 0;
-//   background: #8c8c8c;
-//   border-radius: 5px;
-//   color: $primary-text-color;
-//   &:hover {
-//     background: $white-text-color;
-//   }
-// }
 .genres_link.active {
   background: $accent-color;
   color: $white-text-color;
