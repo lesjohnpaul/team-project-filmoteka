@@ -26,7 +26,6 @@ function renderPagination(pageAmount, currentPage = 1) {
     template: {
       page: '<a href="#" class="tui-page-btn">{{page}}</a>',
       currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-      // currentPage: '<button class="tui-page-btn tui-is-selected">{{page}}</button>',
       moveButton:
         '<a href="#" class="tui-page-btn tui-{{type}}">' +
         '<span class="tui-ico-{{type}}">{{type}}</span>' +
