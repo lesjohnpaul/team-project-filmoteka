@@ -31,7 +31,7 @@ function renderGallery(data) {
           </div>
           <div class="description">
             <h2 class="gallery__title">${title}</h2>
-            <p class="gallery__genre">${genreStr} | ${release_date.substr(0, 4)}</p>
+            <p class="gallery__genre">${genreStr} | ${release_date.substr(0, 4)}<span class="gallery__raiting">${round(vote_average, 1)}</span></p>
           </div>
         </a>
       </li>`;
