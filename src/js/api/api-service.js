@@ -1,6 +1,6 @@
 import axios from 'axios';
 const BASE_URL = 'https://api.themoviedb.org/3/';
-const API_KEY = '03b99d578651e9a3ce5c6cc1a058aad2';
+const API_KEY = 'd44d649bf29b13f15f7c09e3a7c504dd';
 
 async function getBySearchQuery(query, page) {
   const response = await axios.get(
