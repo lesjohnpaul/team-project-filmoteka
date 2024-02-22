@@ -2,14 +2,12 @@ import { refs } from '../references/refs';
 import { PAGE_TYPE, readState } from '../base/state';
 import images from '../../images/plug/notfound.jpg';
 import { isInteger } from 'lodash';
-import poster from '../../images/plug/notfound.jpg';
 
 function renderGallery(data) {
   if (data === null || data.length === 0) {
     const plugMarkup = `
-      <img src="${images['noresult']}" alt="Nothing was found" width="240px" class="plug_image">
-      <h2 class="plug_title">Opps! There is nothing to show you</h2>
-      <p class="plug_text">Maybe you forgot to bring popcorn?</p>`;
+      <img src="${images}" alt="Nothing was found" width="240px" class="plug_image">
+      <h2 class="plug_title">Opps! There is nothing to show you</h2>`;
     refs.gallery.innerHTML = '';
     refs.plug.innerHTML = plugMarkup;
     return;
@@ -22,7 +20,7 @@ function renderGallery(data) {
       if (isInteger(vote_average)) {
         vote_average = vote_average + '.0';
       }
-      const posterPath = !poster_path ? poster : `https://image.tmdb.org/t/p/w500${poster_path}`;
+      const posterPath = !poster_path ? images : `https://image.tmdb.org/t/p/w500${poster_path}`;
       const genreStr = genres.map(genre => genre.name).join(', ');
       if (readState().pageType === PAGE_TYPE.TRENDS) {
         return `
@@ -50,7 +48,7 @@ function renderGallery(data) {
       <p class="gallery__genre">${genreStr} | ${release_date.substr(
         0,
         4,
-      )}<span class="gallery__raiting">${Number(vote_average.toFixed(1))}</span>
+      )}<span class="gallery__raiting">${round(vote_average, 1)}</span>
       </p>
     </div>
   </a>
@@ -60,4 +58,10 @@ function renderGallery(data) {
   refs.plug.innerHTML = '';
   refs.gallery.innerHTML = markup;
 }
+
+function round(value, precision) {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
+
 export { renderGallery };
