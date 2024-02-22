@@ -161,7 +161,7 @@
 
   &:hover,
   &:focus {
-    color: #818181;
+    color: $accent-color;
   }
 }
 .header-nav__item:not(:last-child) {
