@@ -34,7 +34,6 @@ function homeLinkClick(e) {
   updateInterface();
 }
 
-//Обработчик на ссылку MyLibrary
 function myLibLinkClick(e) {
   e.preventDefault();
 
@@ -48,7 +47,6 @@ function myLibLinkClick(e) {
   updateInterface();
 }
 
-//Проверка стейта для добавления и удаления классов при перезагрузке
 function checkReloadSite() {
   switch (readState().pageType) {
     case PAGE_TYPE.TRENDS:
@@ -77,7 +75,6 @@ function checkReloadSite() {
   }
 }
 
-//обработчик submit на форме поиска
 function onFormSubmit(e) {
   e.preventDefault();
   const query = e.currentTarget.elements.input.value.trim();
@@ -86,20 +83,19 @@ function onFormSubmit(e) {
     return;
   }
 
-  //e.currentTarger.ClassList.add() - делаем ее активной через css
+
   writeState({
     pageType: PAGE_TYPE.SEARCH,
     currentPage: 1,
-    search: e.currentTarget.elements.input.value.trim(), //записываем в search пользовательский текст
+    search: e.currentTarget.elements.input.value.trim(),
     isModalOpen: false,
     modalFilmId: null,
   });
   updateInterface();
 }
 
-//обработчик на кнопку WATCHED и QUEUE - он будет один
+
 function libTypeWatchedBtnClick(e) {
-  //С кнопки queue снимаем "current",а на текущую вешаем
   writeState({
     pageType: PAGE_TYPE.LIB_WATCHED,
     currentPage: 1,
@@ -110,7 +106,6 @@ function libTypeWatchedBtnClick(e) {
   updateInterface();
 }
 function libTypeQueueBtnClick(e) {
-  //С кнопки WATCHED снимаем "current",а на текущую вешаем
   writeState({
     pageType: PAGE_TYPE.LIB_QUEUE,
     currentPage: 1,
@@ -120,7 +115,6 @@ function libTypeQueueBtnClick(e) {
   });
   updateInterface();
 }
-//обработчик клика на пагинатор
 function onPaginatorClick(page) {
   const state = readState();
   state.currentPage = page;
@@ -128,7 +122,6 @@ function onPaginatorClick(page) {
   updateInterface();
 }
 
-//обработчик клика по галерее
 function onGalleryClick(e) {
   e.preventDefault();
   const itemLink = e.target.parentNode.parentNode;
@@ -149,7 +142,7 @@ function onGalleryClick(e) {
   writeState(state);
   updateInterface();
 }
-//обработчик на клик по сслыке в footer
+
 function onOpenTeamModal(e) {
   e.preventDefault();
   const state = readState();
@@ -158,7 +151,7 @@ function onOpenTeamModal(e) {
   writeState(state);
   updateInterface();
 }
-//обработчик на кнопку закрытия в модалке
+
 function onCloseModalWindow() {
   const state = readState();
   state.modalFilmId = null;
@@ -166,7 +159,7 @@ function onCloseModalWindow() {
   writeState(state);
   updateInterface();
 }
-//обработчик на ESC на закрытие модалки
+
 function onKeyBoardClick(e) {
   const ESC_KEY_CODE = 'Escape';
   const arrowRight = 'ArrowRight';
@@ -198,7 +191,6 @@ function onModalBackdropClick(e) {
   }
 }
 
-//собрал в 1 функцию все действия для того чтобы модалка открылась из функции updateInterface
 function openModal() {
   refs.modal.classList.remove('is-hidden');
   refs.scrollLock.classList.add('modal-open');
@@ -207,7 +199,6 @@ function openModal() {
   window.addEventListener('keydown', onKeyBoardClick);
 }
 
-//собрал в 1 функцию все действия для того чтобы модалка закрылась из функции updateInterface
 function closeModal() {
   refs.modal.classList.add('is-hidden');
   refs.scrollLock.classList.remove('modal-open');
@@ -221,7 +212,6 @@ function closeModal() {
   removeModalBtnListeners();
 }
 
-//обработчик на клик по кнопке Watched в модалке
 function onModalBtnWatchedClick() {
   const state = readState();
   const filmId = state.modalFilmId;

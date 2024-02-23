@@ -3,6 +3,7 @@
   padding: 48px 20px 41px 20px;
   overflow: auto;
   max-height: calc(100vh - 55px);
+  border: 1px solid $accent-color;
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     width: 562px;
     padding: 42px 30px 41px 20px;
@@ -14,7 +15,6 @@
   &[data-theme='dark'] {
     background-color: #191a19;
     color: #fff;
-    border: 1px solid #ffffff;
   }
 }
 
@@ -190,7 +190,7 @@ tr {
 
 .close_modal_butt:hover,
 .close_modal_butt:focus {
-  fill: $rating-color;
+  background-color: $accent-color;
   border-radius: 50%;
   outline: 1px solid $primary-text-color;
 }
@@ -312,16 +312,73 @@ tr {
   z-index: 5;
   position: fixed;
   padding: 40px 5px 30px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
   opacity: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.8);
+
+  @media (max-width: 768px) {
+    .modal-trailer__backdrop {
+      padding: 20px;
+      max-width: 90%;
+      max-height: 90%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .modal-trailer__backdrop {
+      padding: 10px;
+      max-width: 95%;
+      max-height: 95%;
+    }
+
+    .iframe {
+      max-width: 280px; /* Ensure the video doesn't exceed the modal's width */
+      height: 500px; /* Allow the video's height to adjust proportionally */
+    }
+  }
 }
 
+.close-btn {
+  position: absolute;
+  top: 10px; /* Adjust this value to position the button vertically */
+  right: 10px; /* Adjust this value to position the button horizontally */
+  width: 30px; /* Adjust the size of the button */
+  height: 30px; /* Adjust the size of the button */
+  border-radius: 50%; /* Make it a circle */
+  background-color: $white-text-color; /* Semi-transparent background */
+  color: black; /* Text color */
+  font-size: 20px; /* Adjust the font size to control the size of the "x" */
+  font-weight: bold; /* Bold font */
+  text-align: center; /* Center the "x" horizontally */
+  line-height: 30px; /* Center the "x" vertically */
+  cursor: pointer; /* Show pointer cursor on hover */
+  border: 0;
+}
+.close-btn::after {
+  content: ""; /* Required for the pseudo-element */
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 20px; /* Adjust the size of the icon */
+  height: 20px; /* Adjust the size of the icon */
+  background-image: url("../images/svg/close.svg"); /* Path to your SVG icon */
+  background-size: cover;
+}
 
+.close-btn:hover {
+  background-color: $accent-color; /* Adjust brightness on hover */
+  fill: $accent-color;
+}
+
+.modal-trailer__wrapper {
+  position: relative;
+}
 
 @keyframes grow {
   from {

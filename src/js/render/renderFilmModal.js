@@ -2,15 +2,29 @@ import { checkIdInLocalStorage, LS_KEY_TYPE } from '../utils/localStorage';
 import { refs } from '../references/refs';
 import { readState } from '../base/state';
 import { onModalBtnWatchedClick, onModalBtnQueueClick } from '../base/handlers';
-import { switchToNextFilmInGallery, switchToPrevFilmInGallery } from '../utils/modalFilmSwitcher';
+import {
+  switchToNextFilmInGallery,
+  switchToPrevFilmInGallery,
+} from '../utils/modalFilmSwitcher';
 import { setModalSwitchBtnAvailability } from '../utils/modalFilmSwitcher';
 import poster from '../../images/plug/notfound.jpg';
+import * as basicLightbox from 'basiclightbox';
+import { onfetchTrailers } from '../api/api-service';
 
 function renderFilmModal(data) {
-  const { original_title, genres, poster_path, overview, popularity, vote_average, vote_count } =
-    data.data;
+  const {
+    original_title,
+    genres,
+    poster_path,
+    overview,
+    popularity,
+    vote_average,
+    vote_count,
+  } = data.data;
   const genreStr = genres.map(genre => genre.name).join(', ');
-  const posterPath = !poster_path ? poster : `https://image.tmdb.org/t/p/w500${poster_path}`;
+  const posterPath = !poster_path
+    ? poster
+    : `https://image.tmdb.org/t/p/w500${poster_path}`;
   const markup = `
   <div class="modal_film_card">
 
@@ -29,7 +43,9 @@ function renderFilmModal(data) {
                 <td class="modal__param-titel">Vote / Votes</td>
                 <td class="modal__param-value">
                   <div class="modal__film-votes">
-                    <span class="param__value-vote">${Number(vote_average.toFixed(1))}</span> /
+                    <span class="param__value-vote">${Number(
+                      vote_average.toFixed(1)
+                    )}</span> /
                     <span class="param__value-votes">${vote_count}</span>
                   </div>
                 </td>
@@ -72,6 +88,56 @@ function renderFilmModal(data) {
   refs.modalContent.innerHTML = markup;
   checkStorageStatusOfFilm();
   setModalSwitchBtnAvailability();
+
+  const trailerBtn = document
+    .querySelector('.open-trailer')
+    .addEventListener('click', async () => {
+      try {
+        console.log('modal clicked');
+        const trailerData = await onfetchTrailers(Number(data.data.id));
+        const videoKey = trailerData.results[0].key;
+        const videoUrl = `https://www.youtube.com/embed/${videoKey}?autoplay=1`;
+
+        // Create and open a basicLightbox with the YouTube video iframe
+        const videoModal = basicLightbox.create(`
+            <div class="modal-trailer__backdrop">
+                <div class"modal-trailer__wrapper>
+                  <button class="close-btn">
+                  </button>
+                  <iframe class="iframe" width="640" height="480" frameborder="0" allowfullscreen allow='autoplay' src="${videoUrl}"></iframe>
+                </div>
+            </div>`);
+
+        videoModal.show();
+
+        const closeModalButt = document.querySelector('.close_modal_butt');
+        closeModalButt.addEventListener('click', () => {
+          console.log('modal clicked');
+          videoModal.close();
+        });
+
+        // Close modal when close button is clicked
+        const closeBtn = videoModal.element().querySelector('.close-btn');
+        closeBtn.addEventListener('click', () => {
+          videoModal.close();
+        });
+
+        // Close modal when Escape key is pressed
+        const closeOnEscape = event => {
+          if (event.key === 'Escape') {
+            videoModal.close();
+          }
+        };
+        window.addEventListener('keydown', closeOnEscape);
+
+        // Remove event listeners when modal is closed
+        videoModal.on('closed', () => {
+          window.removeEventListener('keydown', closeOnEscape);
+        });
+      } catch (error) {
+        console.error('Error fetching trailers:', error.message);
+      }
+    });
 }
 
 function checkStorageStatusOfFilm() {
@@ -104,4 +170,9 @@ function removeModalBtnListeners() {
   refs.modalBtnPrev[0].removeEventListener('click', switchToPrevFilmInGallery);
 }
 
-export { renderFilmModal, checkStorageStatusOfFilm, removeModalBtnListeners, addModalBtnListeners };
+export {
+  renderFilmModal,
+  checkStorageStatusOfFilm,
+  removeModalBtnListeners,
+  addModalBtnListeners,
+};

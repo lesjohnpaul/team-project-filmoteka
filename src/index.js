@@ -7,7 +7,6 @@ import './js/base/listeners';
 import { updateInterface } from './js/base/update';
 import './js/base/scrollToTop';
 import './js/base/themePreference';
-// import './js/render/renderTrailer.js'
 import { setDefaultTheme } from './js/base/themePreference';
 
 updateInterface();

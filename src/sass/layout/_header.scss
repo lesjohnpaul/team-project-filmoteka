@@ -90,7 +90,7 @@
 .header-logo__link {
   &:focus .header-logo__svg {
     stroke: $accent-color;
-    transform: rotate(45deg);
+    transform: scaleX(-1);
   }
   &:focus .header-logo__text {
     color: $accent-color;
