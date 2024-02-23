@@ -61,6 +61,7 @@
 }
 
 .modal__image-wrapper {
+  position: relative;
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -277,7 +278,7 @@ tr {
   height: 55px;
   position: absolute;
   top: 50%;
-  left: 25%;
+  left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: $accent-color;
@@ -301,7 +302,7 @@ tr {
 
   @media (max-width: 767px) {
     position: absolute;
-    top: 25%;
+    top: 40%;
     left: 40%;
     transform: none;
   }
